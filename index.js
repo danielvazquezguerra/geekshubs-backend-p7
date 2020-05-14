@@ -2,9 +2,28 @@ import express from 'express';
 const app = express();
 import mongoose from 'mongoose';
 import productsRouter from './routes/products.js'
-const PORT = 3001
+import path from 'path';
+const PORT = 3001;
 
-mongoose.connect('mongodb://localhost:27017/repaso-mongodb', {
+
+//settings
+
+
+//middlewares
+app.use(express.urlencoded({extended:false}));
+
+//Routes
+app.get('/', (req, res) => {
+    res.send('hello mongodb');
+})
+
+
+//global variables
+
+
+
+
+mongoose.connect('mongodb://localhost:/repaso-mongodb', {
         useCreateIndex: true,
         useNewUrlParser: true,
         useFindAndModify: false,
