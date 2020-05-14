@@ -1,10 +1,19 @@
 import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+
 const app = express();
 import mongoose from 'mongoose';
 import productsRouter from './routes/products.js'
 import path from 'path';
 const PORT = 3001;
 
+
+// const ECOMMERCE_APP_MONGODB_HOST = process.env.ECOMMERCE_APP_MONGODB_HOST;
+// const ECOMMERCE_APP_DATABASE = process.env.ECOMMERCE_APP_MONGODB_DATABASE;
+
+const { ECOMMERCE_APP_MONGODB_HOST, ECOMMERCE_APP_MONGODB_DATABASE } = process.env
+const MONGODB_URI = `mongodb://${ECOMMERCE_APP_MONGODB_HOST}/${ECOMMERCE_APP_MONGODB_DATABASE}}`;
 
 //settings
 
@@ -23,7 +32,7 @@ app.get('/', (req, res) => {
 
 
 
-mongoose.connect('mongodb://localhost:/repaso-mongodb', {
+mongoose.connect(MONGODB_URI, {
         useCreateIndex: true,
         useNewUrlParser: true,
         useFindAndModify: false,

@@ -1,10 +1,10 @@
 import express from 'express';
-import Product from '../models/Product.js';
+import Skateboard from '../models/Skateboard.js';
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    Product.create(req.body)
-        .then(product => res.status(201).send(product))
+    Skateboard.create(req.body)
+        .then(skateboard => res.status(201).send(skateboard))
         .catch(console.error)
 })
 
