@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import skatesRouter from './routes/SkateBoards.js'
 import usersRouter from './routes/Users.js'
+import ordersRouter from './routes/Orders.js'
 dotenv.config();
 import mongoose from 'mongoose';
 const app = express();
@@ -44,7 +45,8 @@ mongoose.connect(MONGODB_URI, {
 app.use(express.json());
 app.use(morgan('dev'));
 app.use('/', skatesRouter);
-app.use('/',usersRouter)
+app.use('/', usersRouter);
+app.use('/', ordersRouter);
 
 app.set('port', process.env.PORT || 3001);
 

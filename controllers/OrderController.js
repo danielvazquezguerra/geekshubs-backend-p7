@@ -1,4 +1,4 @@
-import OrderModel from '../models/Order'
+import OrderModel from '../models/Order.js'
 
 const OrderController = {
 
