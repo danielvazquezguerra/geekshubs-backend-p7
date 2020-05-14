@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import bcryptjs from 'bcrypt';
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const UserSchema = new mongoose.Schema({
     name: {
@@ -28,15 +27,15 @@ const UserSchema = new mongoose.Schema({
         timestamps: true
     });
 
-    const User = mongoose.model('User', UserSchema);
+    const UserModel = mongoose.model('User', UserSchema);
 
-    UserSchema.methods.encrypPass = password => {
-     const salt =  await bcryptjs.genSalt();
-     return await bcryptjs.hash(password, salt);
-    }
+    // UserSchema.methods.encrypPass = password => {
+    //  const salt =  await bcryptjs.genSalt();
+    //  return await bcryptjs.hash(password, salt);
+    // }
 
-    UserSchema.methods.matchPass = (password,hash )=> {
-      return await bcryptjs.compare(password, hash)
-    }
+    // UserSchema.methods.matchPass = (password,hash ) => {
+    //   return bcryptjs.compare(password, hash)
+    // }
 
-    export default User;
+    export default UserModel;

@@ -10,14 +10,18 @@ const SkateboardSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    brand: {
+        type: String,
+        required: true,
+    },
     image_path: {
         type: String,
         required: true
     },
     categories: [ObjectId]
-    },
+    },  
     {
         timestamps: true
     });
-const Skateboard = mongoose.model('Skateboard', SkateboardSchema);
-export default Skateboard;
+const SkateModel = mongoose.model('Skateboard', SkateboardSchema);
+export default SkateModel;

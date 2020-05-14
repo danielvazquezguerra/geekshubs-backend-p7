@@ -1,5 +1,5 @@
-import UserModel from '../models/User';
-import bcryptjs from 'bcrypt';
+import UserModel from '../models/User.js';
+import bcryptjs from 'bcryptjs';
 import jsonwebtoken from 'jsonwebtoken';
 
 const UserController = {

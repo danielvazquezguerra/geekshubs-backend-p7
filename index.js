@@ -1,11 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
+import skatesRouter from './routes/SkateBoards.js'
+import usersRouter from './routes/Users.js'
 dotenv.config();
-
-const app = express();
 import mongoose from 'mongoose';
-import productsRouter from './routes/products.js'
-import path from 'path';
+const app = express();
 const PORT = 3001;
 
 
@@ -42,7 +42,9 @@ mongoose.connect(MONGODB_URI, {
     .catch(error => console.error(error));
 
 app.use(express.json());
-app.use('/products', productsRouter);
+app.use(morgan('dev'));
+app.use('/', skatesRouter);
+app.use('/',usersRouter)
 
 app.set('port', process.env.PORT || 3001);
 

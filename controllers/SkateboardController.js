@@ -1,4 +1,4 @@
-import SkateModel from 'SkateboardModel'
+import SkateModel from '../models/Skateboard.js'
 
 const SkateboardController = {
     getAll(req, res) {
