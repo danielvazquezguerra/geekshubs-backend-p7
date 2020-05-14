@@ -29,13 +29,5 @@ const UserSchema = new mongoose.Schema({
 
     const UserModel = mongoose.model('User', UserSchema);
 
-    // UserSchema.methods.encrypPass = password => {
-    //  const salt =  await bcryptjs.genSalt();
-    //  return await bcryptjs.hash(password, salt);
-    // }
-
-    // UserSchema.methods.matchPass = (password,hash ) => {
-    //   return bcryptjs.compare(password, hash)
-    // }
 
     export default UserModel;
