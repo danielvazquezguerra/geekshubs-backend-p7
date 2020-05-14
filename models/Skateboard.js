@@ -15,6 +15,9 @@ const SkateboardSchema = new mongoose.Schema({
         required: true
     },
     categories: [ObjectId]
-});
+    },
+    {
+        timestamps: true
+    });
 const Skateboard = mongoose.model('Skateboard', SkateboardSchema);
 export default Skateboard;
