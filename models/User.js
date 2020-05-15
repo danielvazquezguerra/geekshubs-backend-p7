@@ -7,11 +7,13 @@ const UserSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -21,7 +23,18 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    categories: [ObjectId]
+    tokens: {
+        type: [String],
+        required: true
+    },
+    productId: [{
+        type: ObjectId,
+        ref: 'Skateboard'
+    }],
+    orderId: [{
+        type: ObjectId,
+        ref: 'Order'
+    }]
     },
     {
         timestamps: true

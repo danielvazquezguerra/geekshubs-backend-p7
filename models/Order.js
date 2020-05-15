@@ -5,8 +5,8 @@ const OrderSchema = new mongoose.Schema({
     deliveryDate: Date,
     userId: ObjectId,
     products: [{
-        type: String,
-        ref: 'Product'
+        type: ObjectId,
+        ref: 'UserModel'
     }]
 
 },
@@ -14,6 +14,6 @@ const OrderSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const OrderModel = mongoose.model('Order', OrderSchema);
+const Order = mongoose.model('Order', OrderSchema);
 
-export default OrderModel;
+export default Order;

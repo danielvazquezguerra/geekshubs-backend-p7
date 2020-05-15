@@ -5,7 +5,10 @@ const SkateboardSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    description: String,
+    description: {
+      type: String,
+      required: true,  
+    },
     price: {
         type: Number,
         required: true,
@@ -14,14 +17,17 @@ const SkateboardSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    image_path: {
+    image_path: [{
         type: String,
         required: true
-    },
-    categories: [ObjectId]
+    }],
+    categoryId: [{
+        type: ObjectId,
+        ref: 'Category'
+    }]
     },  
     {
         timestamps: true
     });
-const SkateModel = mongoose.model('Skateboard', SkateboardSchema);
-export default SkateModel;
+const Skateboard = mongoose.model('Skateboards', SkateboardSchema);
+export default Skateboard;

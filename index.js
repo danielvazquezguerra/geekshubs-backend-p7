@@ -1,20 +1,20 @@
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import skatesRouter from './routes/SkateBoards.js'
 import usersRouter from './routes/Users.js'
 import ordersRouter from './routes/Orders.js'
+import categoriesRouter from './routes/Categories.js'
 dotenv.config();
 import mongoose from 'mongoose';
 const app = express();
 const PORT = 3001;
 
 
-// const ECOMMERCE_APP_MONGODB_HOST = process.env.ECOMMERCE_APP_MONGODB_HOST;
-// const ECOMMERCE_APP_DATABASE = process.env.ECOMMERCE_APP_MONGODB_DATABASE;
-
+//.env
 const { ECOMMERCE_APP_MONGODB_HOST, ECOMMERCE_APP_MONGODB_DATABASE } = process.env
-const MONGODB_URI = `mongodb://${ECOMMERCE_APP_MONGODB_HOST}/${ECOMMERCE_APP_MONGODB_DATABASE}}`;
+const MONGODB_URI = `mongodb://${ECOMMERCE_APP_MONGODB_HOST}/${ECOMMERCE_APP_MONGODB_DATABASE}`;
 
 //settings
 
@@ -24,29 +24,39 @@ app.use(express.urlencoded({extended:false}));
 
 //Routes
 app.get('/', (req, res) => {
-    res.send('hello mongodb');
+    res.send('BANZAI!!!');
 })
 
 
-//global variables
-
-
-
-
+//warnings
 mongoose.connect(MONGODB_URI, {
         useCreateIndex: true,
         useNewUrlParser: true,
         useFindAndModify: false,
         useUnifiedTopology: true,
     })
-    .then(() => console.log('Conectado a MongoDB con éxito'))
+    .then(() => console.log('MONEYBALL'))
     .catch(error => console.error(error));
 
-app.use(express.json());
+const db = mongoose.connection;
+
+db.once('open', _ => {
+    console.log('Database is connected to', MONGODB_URI);
+    
+})
+
+db.on('error', err => {
+    console.log(error);
+    
+})
+
+app.use(express.json()); 
 app.use(morgan('dev'));
-app.use('/', skatesRouter);
-app.use('/', usersRouter);
-app.use('/', ordersRouter);
+app.use(cors());
+app.use('/skateboards', skatesRouter);
+app.use('/users', usersRouter);
+app.use('/orders', ordersRouter);
+app.use('/categories', categoriesRouter);
 
 app.set('port', process.env.PORT || 3001);
 

@@ -1,5 +1,5 @@
 import UserModel from '../models/User.js';
-import bcryptjs from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import jsonwebtoken from 'jsonwebtoken';
 
 const UserController = {
@@ -10,7 +10,7 @@ const UserController = {
 
     async signup(req, res) {
         try {
-            const hash = await bcryptjs.hash(req.body.params, 9); //con esto generamos el hash a partir de la contraseña
+            const hash = await bcrypt.hash(req.body.password, 9); //con esto generamos el hash a partir de la contraseña
             req.body.password = hash; // ahora el password es el hash obtenido con el password introducido. 
 
             const user = await UserModel.create(req.body); // creamos el usuario a partir del mail y el hash siminisrtados en MongoDB.
@@ -49,11 +49,11 @@ const UserController = {
             }, 'BanZaiMadafaker', {
                 expiresIn: '2y'
             });
-            if(user.tokens.length > 4) user.tokens.shift(); //si hay 5 tokens eliminamos el PRIMERO de la lista. 
+            if (user.tokens.length > 4) user.tokens.shift(); //si hay 5 tokens eliminamos el PRIMERO de la lista. 
             user.tokens.push(token); // añadimos el token al final de la lista.
             await user.save();
             res.send({
-                message: `Banzai Mr. ${user.mail}`,
+                message: 'Banzai Mr. ' + user.username,
                 user,
                 token
             });
