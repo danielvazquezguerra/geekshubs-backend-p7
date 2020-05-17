@@ -20,6 +20,10 @@ const SkateboardController = {
         })
     },
 
+    getSkateboardByCategory(req, res) {
+        
+    },
+
     SkateAdd(req, res) {
         SkateModel.create(req.body)
         .then(skateboard => res.status(201).send(skateboard))

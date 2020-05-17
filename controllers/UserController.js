@@ -65,7 +65,14 @@ const UserController = {
         }
     },
 
-//aqui seguimos con los metodos
+    logout(req, res) {
+        UserModel.findByIdAndUpdate(req.user._id, {$pull: {tokens: req.headers.authorization}})
+        .then(user => res.send(user))
+        .catch(console.error)
+    },
+
+//aqui sigo los metodos... 
+
 }
 
 export default UserController;
