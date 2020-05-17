@@ -3,7 +3,7 @@ import SkateboardController from '../controllers/SkateboardController.js';
 const router = express.Router();
 
 router.get('/all', SkateboardController.getAll);
-router.get('/category/:_id', SkateboardController.getById);
+router.get('/:_id', SkateboardController.getById);
 router.post('/create', SkateboardController.SkateAdd);
 
 export default router;
